@@ -1,1 +1,3 @@
-console.log('connected')
+document.getElementById("myButton").addEventListener("click", function () {
+  alert("Hello World!");
+});
