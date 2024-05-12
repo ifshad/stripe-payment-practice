@@ -4,7 +4,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const port = 3000;
+app.use(express.json());
 
 app.use(
   cors({
@@ -16,14 +16,6 @@ const storeItems = new Map([
   [1, { priceInCents: 10000, name: "Learn React Today" }],
   [2, { priceInCents: 20000, name: "Learn CSS Today" }],
 ]);
-
-app.get("/", (req, res) => {
-  res.send("This is Server. Lets go...");
-});
-
-app.post("/", (req, res) => {
-  res.send("Got a POST request");
-});
 
 app.post("/create-checkout-session", async (req, res) => {
     try {
@@ -52,6 +44,6 @@ app.post("/create-checkout-session", async (req, res) => {
     }
     });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
 });
